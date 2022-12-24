@@ -13,31 +13,24 @@
 #define WIDTH 680
 #define HEIGHT 480
 
-SDL_Renderer** rendererPointer;
-SDL_Renderer*** rendererPtrPtr = &rendererPointer;
+SDL_Renderer *renderer;
 
 int main(int argc, char** argv) {
+
+	SDL_Init(SDL_INIT_VIDEO);
+	IMG_Init(IMG_INIT_PNG);
+
+    SDL_Window *window;
+    SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
 
 	bool quit = false;
 	SDL_Event event;
 
-	SDL_Init(SDL_INIT_VIDEO);
-
-	IMG_Init(IMG_INIT_PNG);
-
-	SDL_Window* window = SDL_CreateWindow("Hello", SDL_WINDOWPOS_UNDEFINED,
-			SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, 0);
-
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
-
-	rendererPointer = &renderer;
-
 	Entity egg(5, 5, 100, 100); 
+    egg.loadTexture("res/egg.png");
 
 	while (!quit){
 		SDL_RenderClear(renderer);
-
-		egg.render();
 
 		SDL_PollEvent(&event);
 		switch (event.type){
@@ -50,6 +43,9 @@ int main(int argc, char** argv) {
 					egg.getPosition() -> x += 10;
 				}
 		}
+
+		egg.render();
+
 		SDL_RenderPresent(renderer);
 	}
 

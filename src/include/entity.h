@@ -21,7 +21,7 @@ public:
 	~Entity();
 	int getHealth();
 	Vector2* getPosition();
-	void loadTexture(SDL_Renderer* p_renderer, char* p_filePath);
+	void loadTexture(char* p_filePath);
 	void render();
 	SDL_Rect getRect();
 };
