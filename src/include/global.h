@@ -4,6 +4,6 @@
 #ifndef MY_GLOBALS_H
 #define MY_GLOBALS_H
 
-extern SDL_Renderer*** rendererPtrPtr;
+extern SDL_Renderer* renderer;
 
 #endif

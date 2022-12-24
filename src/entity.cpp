@@ -17,8 +17,8 @@ Entity::~Entity() {
 	SDL_DestroyTexture(texture);
 }
 
-void Entity::loadTexture(SDL_Renderer* p_renderer, char* p_filePath){
-	texture = IMG_LoadTexture(p_renderer, p_filePath);
+void Entity::loadTexture(char* p_filePath){
+	texture = IMG_LoadTexture(renderer, p_filePath);
 	if (texture == NULL){
 		std::cout << "Texture failed to load" << std::endl;
 	}
@@ -31,5 +31,5 @@ Vector2* Entity::getPosition(){
 void Entity::render() {
 	rect = {position.x, position.y, dimension.x, dimension.y};
 	
-	SDL_RenderCopy(&&rendererPtrPtr, texture, NULL, &rect);
+	SDL_RenderCopy(renderer, texture, NULL, &rect);
 }
